@@ -19,8 +19,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private JdbcTemplate jdbcTemplate;
+//    @Autowired
+//    private JdbcTemplate jdbcTemplate;
 
     /**
      * 用户登录接口
@@ -50,33 +50,33 @@ public class UserController {
         return response;
     }
 
-    /**
-     * 测试数据库连接接口
-     * @return 返回测试结果的JSON
-     */
-    @GetMapping("/test")
-    public Map<String, Object> testDatabaseConnection() {
-        Map<String, Object> response = new HashMap<>();
-        try {
-            // 执行 SQL 查询，获取 uid 为 1 的 email
-            String sql = "SELECT email FROM thesis.users WHERE id = ?";
-            String email = jdbcTemplate.queryForObject(sql, new Object[]{1}, String.class);
-
-            // 判断是否找到了 email
-            if (email != null) {
-                response.put("status", "success");
-                response.put("message", "数据库连接成功！");
-                response.put("email", email);
-            } else {
-                response.put("status", "error");
-                response.put("message", "没有找到 uid 为 1 的用户！");
-            }
-        } catch (Exception e) {
-            response.put("status", "error");
-            response.put("message", "数据库连接失败！错误信息：" + e.getMessage());
-        }
-        return response;
-    }
+//    /**
+//     * 测试数据库连接接口
+//     * @return 返回测试结果的JSON
+//     */
+//    @GetMapping("/test")
+//    public Map<String, Object> testDatabaseConnection() {
+//        Map<String, Object> response = new HashMap<>();
+//        try {
+//            // 执行 SQL 查询，获取 uid 为 1 的 email
+//            String sql = "SELECT email FROM thesis.users WHERE id = ?";
+//            String email = jdbcTemplate.queryForObject(sql, new Object[]{1}, String.class);
+//
+//            // 判断是否找到了 email
+//            if (email != null) {
+//                response.put("status", "success");
+//                response.put("message", "数据库连接成功！");
+//                response.put("email", email);
+//            } else {
+//                response.put("status", "error");
+//                response.put("message", "没有找到 uid 为 1 的用户！");
+//            }
+//        } catch (Exception e) {
+//            response.put("status", "error");
+//            response.put("message", "数据库连接失败！错误信息：" + e.getMessage());
+//        }
+//        return response;
+//    }
         @GetMapping("/user")
     public User user(){
         User book = new User();

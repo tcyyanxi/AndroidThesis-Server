@@ -5,8 +5,8 @@ import com.example.androidthesisserver.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
+
 
 @Service
 public class UserService {
@@ -30,7 +30,9 @@ public class UserService {
     public void registerUser(String email) {
         User user = new User();
         user.setEmail(email);
-        user.setIsFirstLogin(true);  // 表示是第一次登录
+        user.setIsFirstLogin(true);
+        user.setCreateTime(new Date());
+        user.setUpdateTime(new Date());
         userMapper.insertUser(user);
     }
 
