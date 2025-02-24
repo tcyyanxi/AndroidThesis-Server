@@ -1,6 +1,7 @@
 package com.example.androidthesisserver.service;
 
 import com.example.androidthesisserver.entity.Word;
+import com.example.androidthesisserver.entity.WordDTO;
 import com.example.androidthesisserver.mapper.WordMapper;
 import org.springframework.stereotype.Service;
 
@@ -28,5 +29,9 @@ public class WordService {
 
     public Word getAllByWord(String word){
         return wordMapper.getAllByWord(word);
+    }
+
+    public List<WordDTO> getWordsByUserIdAndDate(Long id, String date) {
+        return wordMapper.getWordsByUserIdAndDate(id, date);
     }
 }

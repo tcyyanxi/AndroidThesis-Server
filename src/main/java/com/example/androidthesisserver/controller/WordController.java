@@ -1,9 +1,13 @@
 package com.example.androidthesisserver.controller;
 
 import com.example.androidthesisserver.entity.Word;
+import com.example.androidthesisserver.entity.WordDTO;
 import com.example.androidthesisserver.service.WordService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -34,4 +38,14 @@ public class WordController {
     public Word getAllByWord(@RequestParam String word){
         return  wordService.getAllByWord(word);
     }
+
+    @GetMapping("/getWords")
+    public List<WordDTO> getWords(@RequestParam Long id, @RequestParam String date) {
+        List<WordDTO> words = wordService.getWordsByUserIdAndDate(id, date);
+        if (words.isEmpty()) {
+            return Collections.emptyList();  // 返回空列表而不是 NoContent
+        }
+        return words;
+    }
+
 }

@@ -11,9 +11,9 @@ import java.util.List;
 @Mapper
 public interface ArticleMapper {
 
-    @Select("SELECT * FROM article WHERE category = #{category}")
+    @Select("SELECT article_id, title, content, word_sum AS articlesSum, category,img FROM article WHERE category = #{category}")
     List<Article> getAllByCategory(@Param("category") String category);
 
-    @Select("SELECT * FROM article")
+    @Select("SELECT article_id, title, content, word_sum AS articlesSum, category,img FROM article")
     List<Article> getAllArticles();
 }
