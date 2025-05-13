@@ -34,4 +34,8 @@ public class WordService {
     public List<WordDTO> getWordsByUserIdAndDate(Long id, String date) {
         return wordMapper.getWordsByUserIdAndDate(id, date);
     }
+
+    public List<WordDTO> getWordsByUserIdAndDateListen(Long id, String date) {
+        return wordMapper.getWordsByUserIdAndDateListen(id, date);
+    }
 }

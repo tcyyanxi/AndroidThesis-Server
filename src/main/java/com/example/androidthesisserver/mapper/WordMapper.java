@@ -29,5 +29,11 @@ public interface WordMapper {
             "WHERE uw.id = #{id} AND uw.date = #{date} AND uw.count = 0")
     List<WordDTO> getWordsByUserIdAndDate(@Param("id") Long id, @Param("date") String date);
 
+    @Select("SELECT w.word, w.pro, w.mean, uw.count " +
+            "FROM user_words uw " +
+            "JOIN words w ON uw.word = w.word " +
+            "WHERE uw.id = #{id} AND uw.date = #{date} AND uw.count != 0")
+    List<WordDTO> getWordsByUserIdAndDateListen(@Param("id") Long id, @Param("date") String date);
+
 
 }

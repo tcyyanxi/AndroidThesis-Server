@@ -15,11 +15,7 @@ public class UserWordsController {
     private UserWordsService userWordsService;
 
     /**
-     * 添加用户单词记录
-     *
-     * @param id 用户ID
-     * @param words 单词列表
-     * @return 成功或失败的响应
+     * 添加用户单词记录（首次选词进入学习，count 为 0）
      */
     @PostMapping("/add")
     public String addUserWords(@RequestParam Long id, @RequestBody List<String> words) {
@@ -55,4 +51,22 @@ public class UserWordsController {
         userWordsService.updateUserWord(id, word, count, date);
         return "更新成功"; // 返回简单的字符串
     }
+
+    /**
+     * 用户提交单词学习成绩后，自动记录并生成下次复习计划（核心调度逻辑）
+     */
+    @PutMapping("/review/schedule")
+    public String reviewAndSchedule(@RequestParam Long id,
+                                    @RequestParam String word,
+                                    @RequestParam int score,
+                                    @RequestParam String date) {
+        userWordsService.reviewAndSchedule(id, word, score, date);
+        return "成绩已记录，系统已生成下次复习任务。";
+    }
+    @PutMapping("/reschedule/unfinished")
+    public String rescheduleUnfinishedTasks(@RequestParam Long id) {
+        int count = userWordsService.rescheduleUnfinishedWords(id);
+        return "已顺延 " + count + " 条未完成计划到今天。";
+    }
+
 }

@@ -5,7 +5,16 @@ public class WordDTO {
     private String pro;
     private String mean;
 
-    // Getters and Setters
+    private int count;
+
+    public int getCount() {
+        return count;
+    }
+
+    public void setCount(int count) {
+        this.count = count;
+    }
+// Getters and Setters
 
     public String getWord() {
         return word;

@@ -14,4 +14,5 @@ public class UserWords {
     private String word;
     private int count;
     private Date date;
+    private Integer intervalDays;
 }

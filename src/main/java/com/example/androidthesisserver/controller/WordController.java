@@ -48,4 +48,9 @@ public class WordController {
         return words;
     }
 
+    @GetMapping("/getWordsByUserIdAndDateListen")
+    public List<WordDTO> getWordsByUserIdAndDateListen(@RequestParam Long id, @RequestParam String date) {
+        return wordService.getWordsByUserIdAndDateListen(id, date);
+    }
+
 }
